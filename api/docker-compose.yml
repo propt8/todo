@@ -1,0 +1,14 @@
+version: '3.2'
+services:
+  api:
+    build:
+      context: '.'
+      args:
+        - 'APP_ENV=development'
+    image: 'api'
+    environment:
+      - 'APP_ENV=development'
+    ports:
+      - '44482:80'
+    volumes:
+      - './src:/app'

@@ -1,0 +1,12 @@
+version: '3.2'
+services:
+  api:
+    build:
+      context: './api'
+    volumes:
+      - './api/src:/app'
+  api-db:
+    build: './api-db'
+    volumes:
+      - 'api-db-data:/var/lib/mysql'
+      - './api-db/data-backup:/var/lib/mysql-backup'

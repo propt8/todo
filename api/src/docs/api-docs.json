@@ -1,0 +1,102 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API",
+        "description": null,
+        "version": "1.0.1"
+    },
+    "paths": {
+        "/": {
+            "get": {
+                "description": "Home page",
+                "responses": {
+                    "default": {
+                        "description": "Welcome page"
+                    }
+                }
+            }
+        },
+        "/v1/auth/me": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "description": "Auth",
+                "operationId": "User info",
+                "responses": {
+                    "200": {
+                        "description": "Return the user information.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/User"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Error: Unauthorized.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Error: Forbidden.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "ErrorResponse": {
+                "properties": {
+                    "errorCode": {
+                        "type": "string"
+                    },
+                    "errors": {
+                        "description": "Error list",
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            },
+            "User": {
+                "properties": {
+                    "id": {
+                        "description": "User ID",
+                        "type": "string"
+                    },
+                    "email": {
+                        "description": "User Email",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "User name",
+                        "type": "boolean"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "securitySchemes": {
+            "api_token": {
+                "type": "apiKey",
+                "description": "Authorize to the API, and use returned token for other requests",
+                "name": "authorization",
+                "in": "header"
+            }
+        }
+    }
+}

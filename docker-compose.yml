@@ -1,0 +1,28 @@
+services:
+    api:
+        build:
+            args:
+                - APP_ENV=development
+            context: ./api
+        environment:
+            - APP_ENV=development
+        image: api
+        ports:
+            - 44482:80
+        volumes:
+            - ./api/src:/app
+    api-db:
+        build: .
+        image: 'api-db'
+        environment:
+            MYSQL_DATABASE: api-db
+            MYSQL_PASSWORD: api-pass
+            MYSQL_ROOT_PASSWORD: root-pass
+            MYSQL_USER: api-user
+        ports:
+            - 3303:3306
+        volumes:
+            - api-db-data:/var/lib/mysql
+version: '3.2'
+volumes:
+    api-db-data: null

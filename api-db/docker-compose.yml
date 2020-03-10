@@ -1,0 +1,16 @@
+version: '3.2'
+services:
+  api-db:
+    build: .
+    image: 'api-db'
+    environment:
+      MYSQL_DATABASE: api-db
+      MYSQL_PASSWORD: api-pass
+      MYSQL_ROOT_PASSWORD: root-pass
+      MYSQL_USER: api-user
+    ports:
+      - 3303:3306
+    volumes:
+      - api-db-data:/var/lib/mysql
+volumes:
+  api-db-data:
