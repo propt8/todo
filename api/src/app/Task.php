@@ -40,7 +40,7 @@ class Task extends Model
      */
     public function scopeSpecial($query, int $userId, bool $admin = false)
     {
-        if(!$admin) {
+        if (!$admin) {
             return $query->where('user_id', $userId);
         }
 

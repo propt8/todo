@@ -62,27 +62,31 @@ class Handler extends ExceptionHandler
                 $error = $this->errorResponse(
                     'TOKEN_EXPIRED',
                     Response::HTTP_UNAUTHORIZED,
-                    [$exception->getMessage()]);
-            } else if ($preException instanceof
+                    [$exception->getMessage()]
+                );
+            } elseif ($preException instanceof
                 \Tymon\JWTAuth\Exceptions\TokenInvalidException) {
                 $error = $this->errorResponse(
                     'TOKEN_INVALID',
                     Response::HTTP_UNAUTHORIZED,
-                    [$exception->getMessage()]);
-            } else if ($preException instanceof
+                    [$exception->getMessage()]
+                );
+            } elseif ($preException instanceof
                 \Tymon\JWTAuth\Exceptions\TokenBlacklistedException) {
                 $error = $this->errorResponse(
                     'TOKEN_BLACKLISTED',
                     Response::HTTP_UNAUTHORIZED,
-                    [$exception->getMessage()]);
+                    [$exception->getMessage()]
+                );
             }
             if ($exception->getMessage() === 'Token not provided') {
                 $error = $this->errorResponse(
                     'TOKEN_NOT_PROVIDED',
                     Response::HTTP_UNAUTHORIZED,
-                    [$exception->getMessage()]);
+                    [$exception->getMessage()]
+                );
             }
-        } else if ($exception instanceof ApiException) {
+        } elseif ($exception instanceof ApiException) {
             $error = $this->errorResponse(
                 $exception->getMessage(),
                 $exception->statusCode,
@@ -94,13 +98,13 @@ class Handler extends ExceptionHandler
                 Response::HTTP_UNPROCESSABLE_ENTITY,
                 $exception->errors()
             );
-        } else if ($exception instanceof ModelNotFoundException) {
+        } elseif ($exception instanceof ModelNotFoundException) {
             $error = $this->errorResponse(
                 'DATA_NOT_FOUND',
                 Response::HTTP_NOT_FOUND,
                 [$exception->getMessage()]
             );
-        } else if ($exception instanceof RouteNotFoundException) {
+        } elseif ($exception instanceof RouteNotFoundException) {
             $error = $this->errorResponse(
                 'ROUTE_NOT_FOUND',
                 Response::HTTP_NOT_FOUND,
@@ -131,8 +135,7 @@ class Handler extends ExceptionHandler
         string $title,
         int $code = Response::HTTP_BAD_REQUEST,
         ?array $errors = []
-    )
-    {
+    ) {
         // TODO: response transformer
         return response()->json([
             'errorCode' => $title,

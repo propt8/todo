@@ -9,7 +9,6 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use League\Fractal\TransformerAbstract;
 
-
 /**
  * @OA\OpenApi(
  *     @OA\Info(

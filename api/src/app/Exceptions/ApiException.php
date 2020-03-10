@@ -32,8 +32,7 @@ class ApiException extends Exception
         string $title = Error::INTERNAL_SERVER_ERROR,
         int $code = Response::HTTP_INTERNAL_SERVER_ERROR,
         ?array $error = []
-    )
-    {
+    ) {
         parent::__construct($title);
         $this->title = $title;
         $this->statusCode = $code;

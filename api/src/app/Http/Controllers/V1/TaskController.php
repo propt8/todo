@@ -26,7 +26,7 @@ class TaskController extends Controller
     public function __construct(FractalResponse $fractal)
     {
         parent::__construct($fractal);
-        if(auth()->user()) {
+        if (auth()->user()) {
             $this->user = auth()->user();
         }
     }

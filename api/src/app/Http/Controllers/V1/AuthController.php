@@ -19,8 +19,7 @@ class AuthController extends Controller
      */
     public function __construct(
         FractalResponse $fractal
-    )
-    {
+    ) {
         parent::__construct($fractal);
     }
 
@@ -183,7 +182,8 @@ class AuthController extends Controller
                 'access_token' => $token,
                 'token_type' => 'bearer',
                 'expires_in' => auth()->factory()->getTTL() * 60
-            ], new AuthTransformer()
+            ],
+            new AuthTransformer()
         );
     }
 }
